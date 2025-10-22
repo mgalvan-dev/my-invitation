@@ -1,0 +1,13 @@
+.container {
+  background-color: var(--background-primary);
+  padding: 60px 40px;
+}
+
+.text {
+  text-align: center;
+  font-size: 1.25rem;
+  color: #ffffff;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 20px 40px;
+}
