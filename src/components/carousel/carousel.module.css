@@ -1,19 +1,20 @@
 .carousel {
-  overflow: hidden;
-  padding-block: 20px;
+    overflow: hidden;
+    padding-block: 20px;
+    margin-bottom: 64px;
 }
 
 .container {
-  display: flex;
+    display: flex;
 }
 
 .slide {
-  flex: 0 0 100%;
-  min-width: 0;
-  position: relative;
-  height: 600px;
+    flex: 0 0 100%;
+    min-width: 0;
+    position: relative;
+    height: 600px;
 }
 
 .image {
-  object-fit: cover;
+    object-fit: cover;
 }
