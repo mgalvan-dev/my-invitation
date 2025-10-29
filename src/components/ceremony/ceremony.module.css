@@ -33,18 +33,3 @@
   font-size: 1rem;
   color: var(--color-primary);
 }
-
-.button {
-  background-color: transparent;
-  padding: 12px 40px;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  font-size: 1rem;
-  margin-top: 12px;
-  transition: all 0.3s ease-in-out;
-  border-radius: 4px;
-}
-
-.button:hover {
-  background-color: #f0f0f0;
-}
