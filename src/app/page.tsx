@@ -8,6 +8,7 @@ import Ceremony from "@/components/ceremony/ceremony";
 import SecondCarousel from "@/components/second-carousel/second-carousel";
 import DressCode from "@/components/dress-code/dress-code";
 import ConfirmForm from "@/components/confirm-form/confirm-form";
+import Gifts from "@/components/gifts/gifts";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <SecondCarousel />
       <Phrase text="Algunos lo llamarán destino, a nosotros nos gusta llamarlo magia" />
       <DressCode />
+      <Gifts />
       <ConfirmForm />
     </main>
   );
