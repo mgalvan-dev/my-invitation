@@ -12,6 +12,7 @@ const Where = () => {
       <Lottie animationData={LocationMarker} className={styles.lottie} />
       <div className={styles.text_container}>
         <p className={styles.title}>FIESTA</p>
+        <p className={styles.subtitle}>22:30 hs</p>
         <p className={styles.subtitle}>Salón Cala Eventos</p>
         <p className={styles.description}>San Martin 3526</p>
         <a

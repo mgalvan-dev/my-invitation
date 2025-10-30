@@ -19,7 +19,7 @@ const Timer = () => {
   });
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2025-11-22T22:00:00");
+    const targetDate = new Date("2025-11-22T22:30:00");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
