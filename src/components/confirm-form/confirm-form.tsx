@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Loader from "../loader/loader";
 import styles from "./confirm-form.module.css";
 
 interface PersonData {
@@ -10,6 +11,7 @@ interface PersonData {
 }
 
 const ConfirmForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [numberOfPeople, setNumberOfPeople] = useState<number>(1);
   const [people, setPeople] = useState<PersonData[]>([
     { firstName: "", lastName: "", isConfirmed: true },
@@ -32,19 +34,19 @@ const ConfirmForm = () => {
   const handlePersonChange = (
     index: number,
     field: keyof PersonData,
-    value: string | boolean
+    value: string | boolean,
   ) => {
     const newPeople = [...people];
     newPeople[index] = { ...newPeople[index], [field]: value };
     setPeople(newPeople);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const isValid = people.every(
       (person) =>
-        person.firstName.trim() !== "" && person.lastName.trim() !== ""
+        person.firstName.trim() !== "" && person.lastName.trim() !== "",
     );
 
     if (!isValid) {
@@ -52,81 +54,104 @@ const ConfirmForm = () => {
       return;
     }
 
-    console.log("Datos del formulario:", people);
+    try {
+      setIsLoading(true);
+      await fetch("/api/confirm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(people),
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Ha ocurrido un error al confirmar las personas");
+    } finally {
+      setNumberOfPeople(1);
+      setPeople([{ firstName: "", lastName: "", isConfirmed: true }]);
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.select_container}>
-        <label htmlFor="numberOfPeople">¿Cuántas personas confirmarán?</label>
-        <select
-          id="numberOfPeople"
-          value={numberOfPeople}
-          onChange={handleNumberChange}
-          className={styles.select}
-        >
-          {[...Array(8)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
-              {i + 1} {i === 0 ? "persona" : "personas"}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {people.map((person, index) => (
-        <div key={index} className={styles.person_form}>
-          <h3>Persona {index + 1}</h3>
-          <div className={styles.input_group}>
-            <input
-              type="text"
-              placeholder="Nombre"
-              value={person.firstName}
-              onChange={(e) =>
-                handlePersonChange(index, "firstName", e.target.value)
-              }
-              className={styles.input}
-              required
-            />
-          </div>
-          <div className={styles.input_group}>
-            <input
-              type="text"
-              placeholder="Apellido"
-              value={person.lastName}
-              onChange={(e) =>
-                handlePersonChange(index, "lastName", e.target.value)
-              }
-              className={styles.input}
-              required
-            />
-          </div>
-          <div className={styles.radio_group}>
-            <label>
-              <input
-                type="radio"
-                name={`confirm-${index}`}
-                checked={person.isConfirmed}
-                onChange={() => handlePersonChange(index, "isConfirmed", true)}
-              />
-              Confirmo asistencia
-            </label>
-            <label>
-              <input
-                type="radio"
-                name={`confirm-${index}`}
-                checked={!person.isConfirmed}
-                onChange={() => handlePersonChange(index, "isConfirmed", false)}
-              />
-              No podré asistir
-            </label>
-          </div>
+    <>
+      {isLoading && <Loader />}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.select_container}>
+          <label htmlFor="numberOfPeople">¿Cuántas personas confirmarán?</label>
+          <select
+            id="numberOfPeople"
+            value={numberOfPeople}
+            onChange={handleNumberChange}
+            className={styles.select}
+          >
+            {[...Array(8)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1} {i === 0 ? "persona" : "personas"}
+              </option>
+            ))}
+          </select>
         </div>
-      ))}
 
-      <button type="submit" className={styles.submit_button}>
-        Confirmar
-      </button>
-    </form>
+        {people.map((person, index) => (
+          <div key={index} className={styles.person_form}>
+            <h3>Persona {index + 1}</h3>
+            <div className={styles.input_group}>
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={person.firstName}
+                onChange={(e) =>
+                  handlePersonChange(index, "firstName", e.target.value)
+                }
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.input_group}>
+              <input
+                type="text"
+                placeholder="Apellido"
+                value={person.lastName}
+                onChange={(e) =>
+                  handlePersonChange(index, "lastName", e.target.value)
+                }
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.radio_group}>
+              <label>
+                <input
+                  type="radio"
+                  name={`confirm-${index}`}
+                  checked={person.isConfirmed}
+                  onChange={() =>
+                    handlePersonChange(index, "isConfirmed", true)
+                  }
+                />
+                Confirmo asistencia
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name={`confirm-${index}`}
+                  checked={!person.isConfirmed}
+                  onChange={() =>
+                    handlePersonChange(index, "isConfirmed", false)
+                  }
+                />
+                No podré asistir
+              </label>
+            </div>
+          </div>
+        ))}
+
+        <button type="submit" className={styles.submit_button}>
+          Confirmar
+        </button>
+      </form>
+    </>
   );
 };
 

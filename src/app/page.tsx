@@ -15,17 +15,20 @@ export default function Home() {
   return (
     <main className={styles.page}>
       <Hero />
-      <Timer />
-      <Phrase text="Con mucha ilusión y la bendición de Dios, queremos vivir este momento rodeados de personas que han formado parte de nuestra historia" />
-      <Carousel />
-      <When />
-      <Ceremony />
-      <Where />
-      <SecondCarousel />
-      <Phrase text="Algunos lo llamarán destino, a nosotros nos gusta llamarlo magia" />
-      <DressCode />
-      <Gifts />
-      <ConfirmForm />
+      <div className={styles.container}>
+        <Timer />
+        <Phrase text="Con mucha ilusión y la bendición de Dios, queremos vivir este momento rodeados de personas que han formado parte de nuestra historia" />
+        <Carousel />
+        <When />
+        <Ceremony />
+        <Where />
+        <SecondCarousel />
+        <Phrase text="Algunos lo llamarán destino, a nosotros nos gusta llamarlo magia" />
+        <DressCode />
+        <Gifts />
+        <ConfirmForm />
+      </div>
+      <Phrase text="Elio & Talia" />
     </main>
   );
 }

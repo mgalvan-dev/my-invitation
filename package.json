@@ -12,6 +12,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^0.548.0",
     "next": "^16.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
@@ -22,8 +23,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.6",
+    "eslint": "^9.38.0",
+    "eslint-config-next": "^15.5.6",
     "typescript": "^5"
   }
 }

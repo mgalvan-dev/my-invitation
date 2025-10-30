@@ -10,7 +10,8 @@ const Ceremony = () => (
     <div className={styles.text_container}>
       <p className={styles.title}>CEREMONIA</p>
       <p className={styles.subtitle}>20:30 hs</p>
-      <p className={styles.description}>Iglesia San Justo</p>
+      <p className={styles.description}>Parroquia Santísimo Sacramento</p>
+      <p className={styles.description}>Calle 105 y 14</p>
     </div>
   </div>
 );

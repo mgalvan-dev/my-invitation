@@ -1,11 +1,12 @@
 "use client";
 
 import Lottie from "lottie-react";
-import Gift from "@/lotties/Gifting.json"
+import Gift from "@/lotties/Gifting.json";
 import styles from "./gifts.module.css";
 
 const Gifts = () => {
-  const alias = "XXXXXXX";
+  const alias = "EEKARDT98";
+  const cbu = "4530000800016774940224";
 
   return (
     <div className={styles.container}>
@@ -17,14 +18,28 @@ const Gifts = () => {
           material, puede ser algo para nuestro hogar o podés transferir al
           alias:
         </p>
-        <p
-          className={styles.description}
-          onClick={() => {
-            navigator.clipboard.writeText(alias);
-          }}
-        >
-          {alias}
-        </p>
+        <div className={styles.description_container}>
+          <p className={styles.description}>{alias}</p>
+          <button
+            className={styles.copy_button}
+            onClick={() => {
+              navigator.clipboard.writeText(alias);
+            }}
+          >
+            Copiar
+          </button>
+        </div>
+        <div className={styles.description_container}>
+          <p className={styles.description}>{cbu}</p>
+          <button
+            className={styles.copy_button}
+            onClick={() => {
+              navigator.clipboard.writeText(cbu);
+            }}
+          >
+            Copiar
+          </button>
+        </div>
       </div>
     </div>
   );
