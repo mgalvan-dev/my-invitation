@@ -11,7 +11,7 @@ const Ceremony = () => (
       <p className={styles.title}>CEREMONIA</p>
       <p className={styles.subtitle}>21:00 hs</p>
       <p className={styles.description}>Parroquia Santísimo Sacramento</p>
-      <p className={styles.description}>Calle 105 y 14</p>
+      <p className={styles.description}>Calle 105 y 14 - Barrio Borges</p>
     </div>
   </div>
 );
