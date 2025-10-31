@@ -33,15 +33,6 @@ const SecondCarousel = () => {
         </div>
         <div className={styles.slide}>
           <Image
-            src="/images/image-4.png"
-            alt="Moni y Elio"
-            fill
-            loading="lazy"
-            className={styles.image}
-          />
-        </div>
-        <div className={styles.slide}>
-          <Image
             src="/images/image-8.png"
             alt="Moni y Elio"
             fill
